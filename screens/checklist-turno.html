@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroOps - Checklist de Turno</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary-container": "#002f0f",
+                        "tertiary-fixed": "#7ffc97",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "surface-container-highest": "#d3e4fe",
+                        "primary": "#04122e",
+                        "on-primary-container": "#828eb1",
+                        "secondary": "#0051d5",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-tertiary-fixed": "#002109",
+                        "outline": "#75777e",
+                        "on-surface-variant": "#45464d",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed": "#00174b",
+                        "outline-variant": "#c5c6ce",
+                        "primary-fixed": "#d9e2ff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-primary-fixed-variant": "#3a4665",
+                        "surface-bright": "#f8f9ff",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b9c6eb",
+                        "primary-fixed-dim": "#b9c6eb",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#005320",
+                        "on-tertiary-container": "#18a44b",
+                        "surface-dim": "#cbdbf5",
+                        "on-primary-fixed": "#0d1b37",
+                        "surface-tint": "#515e7e",
+                        "tertiary-fixed-dim": "#62df7d",
+                        "inverse-on-surface": "#eaf1ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-secondary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#eff4ff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#316bf3",
+                        "background": "#f8f9ff",
+                        "surface-container": "#e5eeff",
+                        "on-secondary-container": "#fefcff",
+                        "primary-container": "#1a2744",
+                        "tertiary": "#001805",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#213145"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    spacing: {
+                        "stack-md": "1rem",
+                        "container-gap": "1rem",
+                        "margin-page": "2rem",
+                        "unit": "4px",
+                        "gutter-md": "1.5rem",
+                        "stack-sm": "0.5rem"
+                    },
+                    fontFamily: {
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    fontSize: {
+                        "label-sm": ["11px", { lineHeight: "16px", letterSpacing: "0.03em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "20px", fontWeight: "400" }],
+                        "label-md": ["13px", { lineHeight: "18px", letterSpacing: "0.01em", fontWeight: "500" }],
+                        "display": ["36px", { lineHeight: "44px", letterSpacing: "-0.02em", fontWeight: "700" }],
+                        "body-lg": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "32px", fontWeight: "600" }],
+                        "headline-lg": ["28px", { lineHeight: "36px", letterSpacing: "-0.01em", fontWeight: "600" }],
+                        "headline-md": ["20px", { lineHeight: "28px", fontWeight: "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Checkbox Styling */
+        input[type="checkbox"] {
+            appearance: none;
+            background-color: #fff;
+            margin: 0;
+            font: inherit;
+            color: currentColor;
+            width: 1.5em;
+            height: 1.5em;
+            border: 2px solid #c5c6ce; /* outline-variant */
+            border-radius: 0.25rem;
+            display: grid;
+            place-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        input[type="checkbox"]::before {
+            content: "";
+            width: 0.8em;
+            height: 0.8em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em white;
+            background-color: white;
+            transform-origin: center;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+        }
+
+        input[type="checkbox"]:checked {
+            background-color: #04122e; /* primary */
+            border-color: #04122e;
+        }
+
+        input[type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+        
+        /* Circular Progress Animation */
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen font-body-md pb-24 md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-primary text-primary dark:text-primary-fixed w-full top-0 sticky border-b border-outline-variant dark:border-primary-container z-40">
+<div class="flex justify-between items-center px-margin-page h-16 w-full">
+<div class="flex items-center gap-3">
+<img alt="AeroOps Logo" class="w-8 h-8 rounded" src="https://lh3.googleusercontent.com/aida/AP1WRLt5azNCuuq85E2-IhtZEd0DRt6uu9Xxm1y3Q2HzJK13ndHiPUi01K85Uq8-N3U1lcIlN_0gZ5F-4ZWzvlDP87FBD-ZPmrSLzqK610ya4vFrXz1jtQdZR5icPlpoEZix8mZ_U2JI8QCwa8Co36elzdZ9D3Q6ZStJl6yq4BXhy880I4wz6fXDyxk5LoVWZHm01U8HDCmqgOP2ku3c7h1K2USQlPRfyvWJvr5bYJBnmZzizXYRHsbfM3yKQVah"/>
+<h1 class="font-headline-md text-headline-md font-bold text-secondary dark:text-secondary-fixed">AeroOps</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md">Checklist de turno</span>
+<button class="hover:bg-surface-container-low dark:hover:bg-primary-container transition-colors active:opacity-80 transition-opacity p-2 rounded-full">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-on-surface-variant">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold font-label-md text-label-md overflow-hidden">
+                    RS
+                </div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="max-w-3xl mx-auto px-4 md:px-margin-page py-6 space-y-container-gap">
+<!-- Shift Info Card -->
+<section class="bg-primary text-on-primary rounded-xl p-4 shadow-md">
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-md text-headline-md flex items-center gap-2">
+                        Turno Tarde <span class="material-symbols-outlined text-sm">arrow_forward</span> Turno Noche
+                    </h2>
+<span class="font-label-md text-label-md bg-secondary text-on-secondary px-2 py-1 rounded">En curso</span>
+</div>
+<div class="flex items-center gap-4 font-body-md text-on-primary-container">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>18:00 → 00:00</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Lunes 30 Jun</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Progress Indicator Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 flex flex-col items-center justify-center shadow-sm">
+<div class="relative w-32 h-32 mb-4">
+<svg class="w-full h-full" viewbox="0 0 120 120">
+<circle class="text-surface-variant stroke-current" cx="60" cy="60" fill="transparent" r="54" stroke-width="12"></circle>
+<circle class="text-secondary stroke-current progress-ring__circle" cx="60" cy="60" fill="transparent" r="54" stroke-dasharray="339.292" stroke-dashoffset="142.50" stroke-linecap="round" stroke-width="12"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="font-display text-display text-primary">58%</span>
+</div>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">7 de 12 ítems completados</p>
+</section>
+<!-- Sistemas Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="bg-surface-container border-b border-outline-variant px-4 py-3">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">settings_suggest</span> Sistemas
+                </h3>
+</div>
+<div class="p-0">
+<ul class="divide-y divide-outline-variant">
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="sis1" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="sis1">Sistema hidráulico revisado</label>
+</li>
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="sis2" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="sis2">Iluminación principal verificada</label>
+</li>
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="sis3" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="sis3">Comunicaciones operativas</label>
+</li>
+<li class="px-4 py-3 flex flex-col gap-2 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<input id="sis4" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer font-medium" for="sis4">Presión de combustible</label>
+</div>
+<div class="ml-9 flex items-center">
+<input class="border border-outline-variant rounded-l-lg px-3 py-2 w-32 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none font-body-md" placeholder="0.0" type="number"/>
+<span class="bg-surface-variant border border-l-0 border-outline-variant rounded-r-lg px-3 py-2 text-on-surface-variant font-label-md">PSI</span>
+</div>
+</li>
+<li class="px-4 py-3 flex flex-col gap-2 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<input id="sis5" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer font-medium" for="sis5">Temperatura motores</label>
+</div>
+<div class="ml-9 flex items-center">
+<input class="border border-outline-variant rounded-l-lg px-3 py-2 w-32 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none font-body-md" placeholder="0.0" type="number"/>
+<span class="bg-surface-variant border border-l-0 border-outline-variant rounded-r-lg px-3 py-2 text-on-surface-variant font-label-md">°C</span>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Documentación Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="bg-surface-container border-b border-outline-variant px-4 py-3">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">description</span> Documentación
+                </h3>
+</div>
+<div class="p-0">
+<ul class="divide-y divide-outline-variant">
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="doc1" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="doc1">Bitácora de vuelo actualizada</label>
+</li>
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="doc2" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="doc2">Documentación de carga completa</label>
+</li>
+<li class="px-4 py-3 flex flex-col gap-2 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<input id="doc3" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer font-medium" for="doc3">Reporte de anomalías</label>
+</div>
+<div class="ml-9">
+<select class="w-full md:w-1/2 border border-outline-variant rounded-lg px-3 py-2 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none font-body-md bg-surface">
+<option>Seleccionar estado...</option>
+<option>Sin anomalías</option>
+<option>Menor</option>
+<option>Mayor</option>
+</select>
+</div>
+</li>
+</ul>
+</div>
+</section>
+<!-- Entrega Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="bg-surface-container border-b border-outline-variant px-4 py-3">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary flex items-center gap-2">
+<span class="material-symbols-outlined">handshake</span> Entrega
+                </h3>
+</div>
+<div class="p-0">
+<ul class="divide-y divide-outline-variant">
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="ent1" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="ent1">Comunicación con supervisor confirmada</label>
+</li>
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input checked="" id="ent2" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 line-through text-on-surface-variant" for="ent2">Área de trabajo despejada</label>
+</li>
+<li class="px-4 py-3 flex flex-col gap-2 hover:bg-surface-container-low transition-colors">
+<div class="flex items-center gap-3">
+<input id="ent3" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer font-medium" for="ent3">Firma digital de entrega</label>
+</div>
+<div class="ml-9 mt-2 border-b-2 border-dashed border-outline-variant h-12 w-full max-w-xs relative bg-surface-container-lowest">
+<span class="absolute bottom-1 left-2 text-outline font-label-sm">Firma aquí...</span>
+</div>
+</li>
+<li class="px-4 py-3 flex items-center gap-3 hover:bg-surface-container-low transition-colors">
+<input id="ent4" type="checkbox"/>
+<label class="font-body-md text-body-md text-on-surface cursor-pointer flex-1 font-medium" for="ent4">Confirmación de recepción del turno entrante</label>
+</li>
+</ul>
+</div>
+</section>
+<!-- Novedades Section -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm p-4">
+<label class="font-headline-sm text-headline-sm font-semibold text-primary flex items-center gap-2 mb-3" for="novedades">
+<span class="material-symbols-outlined">edit_note</span> Novedades del turno
+            </label>
+<textarea class="w-full border border-outline-variant rounded-lg p-3 focus:ring-2 focus:ring-secondary focus:border-secondary outline-none font-body-md resize-none" id="novedades" placeholder="Ingrese cualquier observación, incidente o detalle relevante del turno..." rows="4"></textarea>
+</section>
+</main>
+<!-- Fixed Bottom Action Area (Mobile mainly, but sticky on desktop) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-lowest border-t border-outline-variant p-4 md:relative md:border-none md:bg-transparent md:p-0 md:max-w-3xl md:mx-auto md:mt-8 z-30 mb-20 md:mb-8">
+<button class="w-full bg-primary text-on-primary font-headline-md text-headline-md font-bold py-4 rounded-xl shadow-lg active:scale-[0.98] transition-transform flex justify-center items-center gap-2">
+            Finalizar entrega de turno <span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden bg-surface dark:bg-primary text-primary dark:text-primary-fixed fixed bottom-0 w-full z-50 border-t border-outline-variant dark:border-primary-container shadow-md flex justify-around items-center h-20 px-2">
+<button class="flex flex-col items-center justify-center bg-secondary-container dark:bg-secondary text-on-secondary-container dark:text-on-secondary rounded-full px-4 py-1 active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined fill text-2xl">checklist</span>
+<span class="font-label-sm text-label-sm mt-1">Checklist</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-secondary dark:hover:text-secondary-fixed active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl">assignment</span>
+<span class="font-label-sm text-label-sm mt-1">Tasks</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-secondary dark:hover:text-secondary-fixed active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl">history</span>
+<span class="font-label-sm text-label-sm mt-1">Logs</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant dark:text-on-surface-variant px-4 py-1 hover:text-secondary dark:hover:text-secondary-fixed active:scale-95 transition-transform duration-150">
+<span class="material-symbols-outlined text-2xl">person</span>
+<span class="font-label-sm text-label-sm mt-1">Profile</span>
+</button>
+</nav>
+</body></html>

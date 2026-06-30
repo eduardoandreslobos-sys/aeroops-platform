@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroOps Enterprise - Calendarización de turnos</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-fixed": "#002109",
+                      "surface": "#f8f9ff",
+                      "on-tertiary-container": "#18a44b",
+                      "surface-bright": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "tertiary-fixed": "#7ffc97",
+                      "tertiary": "#001805",
+                      "surface-container": "#e5eeff",
+                      "on-tertiary-fixed-variant": "#005320",
+                      "on-primary": "#ffffff",
+                      "secondary": "#0051d5",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#b9c6eb",
+                      "primary": "#04122e",
+                      "primary-container": "#1a2744",
+                      "error-container": "#ffdad6",
+                      "on-secondary": "#ffffff",
+                      "surface-tint": "#515e7e",
+                      "inverse-surface": "#213145",
+                      "tertiary-fixed-dim": "#62df7d",
+                      "outline-variant": "#c5c6ce",
+                      "surface-dim": "#cbdbf5",
+                      "surface-container-lowest": "#ffffff",
+                      "outline": "#75777e",
+                      "inverse-primary": "#b9c6eb",
+                      "on-primary-fixed": "#0d1b37",
+                      "surface-variant": "#d3e4fe",
+                      "on-secondary-container": "#fefcff",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#316bf3",
+                      "tertiary-container": "#002f0f",
+                      "on-surface": "#0b1c30",
+                      "surface-container-low": "#eff4ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-primary-fixed-variant": "#3a4665",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "background": "#f8f9ff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "on-background": "#0b1c30",
+                      "on-secondary-fixed": "#00174b",
+                      "on-primary-container": "#828eb1",
+                      "primary-fixed": "#d9e2ff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-surface-variant": "#45464d",
+                      "secondary-fixed": "#dbe1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-gap": "1rem",
+                      "stack-sm": "0.5rem",
+                      "unit": "4px",
+                      "margin-page": "2rem",
+                      "gutter-md": "1.5rem",
+                      "stack-md": "1rem"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["11px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+                      "label-md": ["13px", {"lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #c5c6ce;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #75777e;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="w-[280px] h-full fixed left-0 top-0 bg-primary flex flex-col shadow-md z-40 hidden md:flex">
+<!-- Brand Header -->
+<div class="px-6 py-6 border-b border-primary-container">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-secondary flex items-center justify-center text-on-secondary font-headline-md font-bold">A</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-on-primary">AeroOps</h1>
+<p class="font-label-sm text-label-sm text-primary-fixed-dim opacity-80">Enterprise Control</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 overflow-y-auto custom-scrollbar py-4 px-2 space-y-1">
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 border-l-4 border-secondary bg-primary-container text-on-secondary-container rounded-r transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="font-body-md text-body-md font-semibold">Turnos</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">flight</span>
+<span class="font-body-md text-body-md">Aeronaves</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">group</span>
+<span class="font-body-md text-body-md">Tripulación</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">analytics</span>
+<span class="font-body-md text-body-md">Reportes</span>
+</a>
+</div>
+<!-- CTA Button -->
+<div class="px-4 py-4">
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-2.5 px-4 rounded shadow-sm hover:bg-secondary-container transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                Nuevo Turno
+            </button>
+</div>
+<!-- Footer Links -->
+<div class="border-t border-primary-container p-2 space-y-1">
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-body-md text-body-md">Configuración</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary-container opacity-60 rounded hover:bg-primary-container hover:opacity-100 transition-colors cursor-pointer" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">help</span>
+<span class="font-body-md text-body-md">Ayuda</span>
+</a>
+</div>
+</nav>
+<!-- TopAppBar -->
+<header class="h-16 fixed top-0 right-0 w-[calc(100%-280px)] bg-surface flex items-center justify-between px-gutter-md border-b border-outline-variant z-30 hidden md:flex">
+<div class="flex items-center gap-4">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">AeroOps Enterprise</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-secondary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary transition-colors active:opacity-80">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+<div class="h-8 w-px bg-outline-variant"></div>
+<button class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden border border-outline-variant cursor-pointer">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional corporate headshot of an enterprise operations manager, bright lighting, light mode background, clear precise focus, standard corporate avatar style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzW2mFqWktLmDPlWtOT0TCXWq5y7XLI6-lB0FJ9vcveu5qD36yXCE779UgEp9j_TUU6udQjAbn3fjSWA_7iR5eG9DMHXFCvjMBpZIYoh19AlpAMhgdWuvSG1RjBCXIkL7cpdojnfRaG4d1gkE6qzxtiyD2SFrBcvRiLDANQhzikIOTnC2ux-GXDG4FY69CSDPZW-i8TqsR0cqDzbDbyjyEX1D7HhqXRAu643p0ypn83DJNKMIDLPT-qrRDSgLPfgQtzrAdpO3NUm_I"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-[280px] mt-16 p-margin-page w-full min-h-[calc(100vh-64px)] overflow-x-hidden">
+<!-- Page Header -->
+<div class="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mb-8">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-background mb-1">Calendarización de turnos</h1>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">calendar_today</span>
+                    semana 30 Jun al 6 Jul 2026
+                </p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex border border-outline-variant rounded bg-surface overflow-hidden shadow-sm">
+<button class="px-3 py-1.5 hover:bg-surface-variant transition-colors border-r border-outline-variant text-on-surface-variant flex items-center" title="Semana anterior">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="px-4 py-1.5 font-label-md text-label-md text-on-surface hover:bg-surface-variant transition-colors">
+                        Hoy
+                    </button>
+<button class="px-3 py-1.5 hover:bg-surface-variant transition-colors border-l border-outline-variant text-on-surface-variant flex items-center" title="Semana siguiente">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+<button class="bg-on-tertiary-container text-on-tertiary px-5 py-2 rounded font-label-md text-label-md font-semibold hover:bg-on-tertiary-fixed-variant transition-colors shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                    Publicar semana
+                </button>
+</div>
+</div>
+<!-- Content Grid (Fluid-Fixed Hybrid) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+<!-- Calendar Grid (Left/Main area) -->
+<div class="xl:col-span-9 bg-surface-container-lowest border border-outline-variant rounded-lg shadow-sm overflow-hidden flex flex-col">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-3 font-label-sm text-label-sm uppercase text-on-surface-variant sticky left-0 bg-surface-container-low z-10 w-48 border-r border-outline-variant shadow-[1px_0_0_0_#e2e8f0]">Empleado</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant">Lun 30</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant">Mar 1</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant">Mié 2</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant">Jue 3</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant">Vie 4</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] border-r border-outline-variant bg-surface-container/30">Sáb 5</th>
+<th class="p-3 font-label-md text-label-md text-center text-on-surface min-w-[100px] bg-surface-container/30">Dom 6</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant font-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-3 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low/50 border-r border-outline-variant z-10 shadow-[1px_0_0_0_#e2e8f0]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional corporate headshot of Carlos Méndez, dispatcher, light mode corporate background, sharp focus, clean professional aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCYPSyupwZKivn9vrFd5UIxaZGJDAlcpcJkqDOq8aoaGagSBi8kMFQ7r7oZ_vCWFvXxMP_iVKpNaSpBUgTI5PpLMtIef1G5whZ6rQuLcRhGaGf4aepWS59aZ-35omxK7VRcnuJ69OzmOdduZ0P20os0yzoZw4qm5Gu1OVD4zHOpUbE-MkVFrSEp3Wd7tZKhrHG-UOtNnQG2OMH19ZmqPKcUzUS_sssO7yjhEVoX2eMLteZv19KUevic7T54tSpTtVm-pUleWkgbAab"/>
+</div>
+<span class="font-medium text-on-background whitespace-nowrap">Carlos Méndez</span>
+</div>
+</td>
+<!-- Cell: Mañana -->
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded cursor-pointer hover:shadow-sm text-center relative flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Mañana</span>
+<span class="text-[10px] opacity-80">06:00 - 14:00</span>
+<span class="material-symbols-outlined absolute top-1 right-1 text-[12px] opacity-0 group-hover:opacity-50">arrow_drop_down</span>
+</div>
+</td>
+<!-- Cell: Mañana -->
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded cursor-pointer hover:shadow-sm text-center relative flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Mañana</span>
+<span class="text-[10px] opacity-80">06:00 - 14:00</span>
+</div>
+</td>
+<!-- Cell: Libre -->
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-surface-variant/30 border border-transparent text-on-surface-variant/50 rounded cursor-pointer hover:bg-surface-variant/50 hover:border-outline-variant/30 text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Libre</span>
+</div>
+</td>
+<!-- Cell: Tarde -->
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Tarde</span>
+<span class="text-[10px] opacity-80">14:00 - 22:00</span>
+</div>
+</td>
+<!-- Cell: Tarde -->
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Tarde</span>
+<span class="text-[10px] opacity-80">14:00 - 22:00</span>
+</div>
+</td>
+<!-- Cell: Libre -->
+<td class="p-1 border-r border-outline-variant bg-surface-container/10">
+<div class="w-full h-full p-2 bg-surface-variant/30 border border-transparent text-on-surface-variant/50 rounded cursor-pointer hover:bg-surface-variant/50 text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Libre</span>
+</div>
+</td>
+<!-- Cell: Libre -->
+<td class="p-1 bg-surface-container/10">
+<div class="w-full h-full p-2 bg-surface-variant/30 border border-transparent text-on-surface-variant/50 rounded cursor-pointer hover:bg-surface-variant/50 text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Libre</span>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-3 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low/50 border-r border-outline-variant z-10 shadow-[1px_0_0_0_#e2e8f0]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Professional corporate headshot of Ana Torres, flight operations, light mode corporate background, sharp focus, bright aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZZmpdIFi-Gb2of9wPs12G5VEkQer8GokR-laTbRAuj1i6-lR30_ypUT4uMR4fOc0l95wlI1h1qGDUNiJtjV29U2NBjW_SxRfpdkGEDX_YubmaRz_qRFQg9FltPA8peFZ4x8YEMK9NEnx_BHiLBfjY1ibAQsNxq1vDHCCCBPWCBHZa4hO5uZfRZNpY28FSUge9nCzmK0YJ1H-OsZzykx3k1mdYy1mBGkFfuJJjF_pSPDiltVJlUGzLoT5GE5wlhS5k-_4ErFdoffww"/>
+</div>
+<span class="font-medium text-on-background whitespace-nowrap">Ana Torres</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Noche</span>
+<span class="text-[10px] opacity-80">22:00 - 06:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Noche</span>
+<span class="text-[10px] opacity-80">22:00 - 06:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Noche</span>
+<span class="text-[10px] opacity-80">22:00 - 06:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded cursor-pointer text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Libre</span>
+</div>
+</td>
+<!-- CONFLICT CELL -->
+<td class="p-1 border-r border-outline-variant relative">
+<div class="w-full h-full p-2 bg-[#e0f2fe] border-2 border-error text-[#0369a1] rounded cursor-pointer hover:shadow-sm text-center flex flex-col items-center justify-center min-h-[48px] relative group/cell">
+<span class="font-label-md text-label-md font-bold">Mañana</span>
+<span class="text-[10px] opacity-80">06:00 - 14:00</span>
+<span class="absolute -top-1 -right-1 w-3 h-3 bg-error rounded-full border border-surface-container-lowest"></span>
+<!-- Tooltip -->
+<div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-max px-3 py-1.5 bg-inverse-surface text-inverse-on-surface text-xs rounded shadow-lg opacity-0 group-hover/cell:opacity-100 transition-opacity pointer-events-none z-50">
+                                            Superposición detectada
+                                            <div class="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-inverse-surface"></div>
+</div>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant bg-surface-container/10">
+<div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded cursor-pointer text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Mañana</span>
+<span class="text-[10px] opacity-80">06:00 - 14:00</span>
+</div>
+</td>
+<td class="p-1 bg-surface-container/10">
+<div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded cursor-pointer text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Libre</span>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors group">
+<td class="p-3 sticky left-0 bg-surface-container-lowest group-hover:bg-surface-container-low/50 border-r border-outline-variant z-10 shadow-[1px_0_0_0_#e2e8f0]">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 overflow-hidden flex items-center justify-center text-on-surface-variant font-medium text-sm">
+                                            RS
+                                        </div>
+<span class="font-medium text-on-background whitespace-nowrap">Roberto Silva</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md text-label-md">Libre</span></div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Tarde</span><span class="text-[10px] opacity-80">14:00 - 22:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Tarde</span><span class="text-[10px] opacity-80">14:00 - 22:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Tarde</span><span class="text-[10px] opacity-80">14:00 - 22:00</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant">
+<div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md text-label-md">Libre</span></div>
+</td>
+<td class="p-1 border-r border-outline-variant bg-surface-container/10">
+<div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Noche</span><span class="text-[10px] opacity-80">22:00 - 06:00</span>
+</div>
+</td>
+<td class="p-1 bg-surface-container/10">
+<div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded text-center flex flex-col items-center justify-center min-h-[48px]">
+<span class="font-label-md text-label-md">Noche</span><span class="text-[10px] opacity-80">22:00 - 06:00</span>
+</div>
+</td>
+</tr>
+<!-- Row 4-8 (Simplified for brevity but following pattern) -->
+<!-- María González -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-3 sticky left-0 bg-surface-container-lowest border-r border-outline-variant z-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden"><img class="w-full h-full object-cover" data-alt="Corporate headshot of María González, enterprise control room, light mode, highly detailed professional photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAktcsBmFHHz10-gn3nN-Nc5sxDcaO-lIj7ElyzPNGgG6bPiwlCfW48hDA6VQGB2PCeBb_l2sBnXA9qKUe-Pp1RQhbL99xmszs6PK99eCpPqF_bHbEL8PyFpknk35XVXQmRRxF1iVXKSg4u1mnxX0z2fsqRqPlvtytbP9L2huTySihP7Ped3v58IcTcUu2fZzq6_Q5ioKNKh7PdnMIwsFKorOcdLJ8NsnV81wjVYiXwYtZKksZ-ZqqXyk8FYg_v13de42glaJ_jLaFU"/></div>
+<span class="font-medium text-on-background whitespace-nowrap">María González</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md">Libre</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant bg-surface-container/10"><div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md">Libre</span></div></td>
+<td class="p-1 bg-surface-container/10"><div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md">Libre</span></div></td>
+</tr>
+<!-- Felipe Rojas -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="p-3 sticky left-0 bg-surface-container-lowest border-r border-outline-variant z-10">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant overflow-hidden flex items-center justify-center font-medium">FR</div>
+<span class="font-medium text-on-background whitespace-nowrap">Felipe Rojas</span>
+</div>
+</td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#ffedd5] border border-[#fed7aa] text-[#c2410c] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Tarde</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md">Libre</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#e0f2fe] border border-[#bae6fd] text-[#0369a1] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Mañana</span></div></td>
+<td class="p-1 border-r border-outline-variant"><div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Noche</span></div></td>
+<td class="p-1 border-r border-outline-variant bg-surface-container/10"><div class="w-full h-full p-2 bg-[#f3e8ff] border border-[#e9d5ff] text-[#7e22ce] rounded text-center flex flex-col items-center justify-center min-h-[48px]"><span class="font-label-md">Noche</span></div></td>
+<td class="p-1 bg-surface-container/10"><div class="w-full h-full p-2 bg-surface-variant/30 text-on-surface-variant/50 rounded text-center flex items-center justify-center min-h-[48px]"><span class="font-label-md">Libre</span></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Panel: Summary -->
+<div class="xl:col-span-3 space-y-4">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-sm">
+<h3 class="font-headline-md text-headline-md font-bold text-on-background mb-4 border-b border-outline-variant pb-2">Resumen de la semana</h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-body-md">Total personas asignadas</span>
+<span class="font-semibold text-on-surface">8</span>
+</div>
+<div class="space-y-2">
+<h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant tracking-wider">Cobertura media diaria</h4>
+<div class="flex items-center justify-between p-2 bg-[#f0f9ff] rounded border border-[#e0f2fe]">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-[#0369a1]"></div>
+<span class="text-[#0369a1] font-label-md">Mañana</span>
+</div>
+<span class="font-semibold text-[#0369a1]">3 personas</span>
+</div>
+<div class="flex items-center justify-between p-2 bg-[#fff7ed] rounded border border-[#ffedd5]">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-[#c2410c]"></div>
+<span class="text-[#c2410c] font-label-md">Tarde</span>
+</div>
+<span class="font-semibold text-[#c2410c]">3 personas</span>
+</div>
+<div class="flex items-center justify-between p-2 bg-[#faf5ff] rounded border border-[#f3e8ff]">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-sm bg-[#7e22ce]"></div>
+<span class="text-[#7e22ce] font-label-md">Noche</span>
+</div>
+<span class="font-semibold text-[#7e22ce]">2 personas</span>
+</div>
+</div>
+<!-- Alert Box -->
+<div class="mt-6 p-3 bg-error-container/30 border border-error/20 rounded flex items-start gap-3">
+<span class="material-symbols-outlined text-error text-[20px] mt-0.5">warning</span>
+<div>
+<h5 class="font-label-md text-label-md font-bold text-on-error-container">Atención requerida</h5>
+<p class="text-sm text-error mt-1">1 conflicto de superposición detectado el día Viernes 4.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Legend Card -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-4 shadow-sm">
+<h4 class="font-label-sm text-label-sm uppercase text-on-surface-variant mb-3">Leyenda de turnos</h4>
+<div class="grid grid-cols-2 gap-2 text-sm">
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-[#e0f2fe] border border-[#bae6fd] rounded"></div>
+<span class="text-on-surface-variant">06:00 - 14:00</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-[#ffedd5] border border-[#fed7aa] rounded"></div>
+<span class="text-on-surface-variant">14:00 - 22:00</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-[#f3e8ff] border border-[#e9d5ff] rounded"></div>
+<span class="text-on-surface-variant">22:00 - 06:00</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-4 h-4 bg-surface-variant/30 border border-outline-variant/30 rounded"></div>
+<span class="text-on-surface-variant">Libre</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

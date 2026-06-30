@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AeroOps — Prototipo de Plataforma Operacional</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f8f9ff;
+      color: #0b1c30;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a2744;
+      color: white;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      background: #2563eb;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    header h1 { font-size: 24px; font-weight: 700; }
+    header p { font-size: 14px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+
+    .badge {
+      margin-left: auto;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 32px;
+    }
+
+    .intro {
+      margin-bottom: 48px;
+    }
+
+    .intro h2 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .intro p {
+      font-size: 14px;
+      color: #45464d;
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #75777e;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.15s, transform 0.15s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      transform: translateY(-2px);
+    }
+
+    .card-preview {
+      height: 180px;
+      background: #e5eeff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview iframe {
+      width: 1280px;
+      height: 800px;
+      border: none;
+      transform-origin: top left;
+      transform: scale(0.234);
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .card-preview.mobile iframe {
+      width: 390px;
+      height: 844px;
+      transform: scale(0.426);
+      transform-origin: top center;
+      left: 50%;
+      margin-left: -195px;
+    }
+
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .tag-desktop { background: #dce9ff; color: #1a2744; }
+    .tag-mobile  { background: #d3f4e1; color: #005320; }
+
+    .card-desc {
+      font-size: 13px;
+      color: #45464d;
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-link {
+      margin-top: 4px;
+      font-size: 12px;
+      font-weight: 500;
+      color: #2563eb;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .card-link::after { content: '→'; }
+
+    footer {
+      background: #1a2744;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 24px;
+      font-size: 12px;
+    }
+
+    footer strong { color: rgba(255,255,255,0.8); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-mark">A</div>
+  <div>
+    <h1>AeroOps — Plataforma Operacional</h1>
+    <p>Prototipo de interfaz · Aerosoluciones · Junio 2026</p>
+  </div>
+  <span class="badge">Prototipo</span>
+</header>
+
+<main>
+  <div class="intro">
+    <h2>Módulos de la plataforma</h2>
+    <p>Estas pantallas representan el diseño de interfaz de la plataforma operacional de Aerosoluciones. Cada módulo resuelve un desafío específico de las operaciones en tierra y la gestión documental de la aviación.</p>
+  </div>
+
+  <p class="section-title">Vistas de escritorio</p>
+  <div class="grid">
+
+    <a class="card" href="screens/dashboard.html" target="_blank">
+      <div class="card-preview">
+        <iframe src="screens/dashboard.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Dashboard Principal</span>
+          <span class="tag tag-desktop">Desktop</span>
+        </div>
+        <p class="card-desc">KPIs operacionales en tiempo real: asistencia, turnos activos, auditorías pendientes y actividad reciente del equipo.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+    <a class="card" href="screens/asistencia.html" target="_blank">
+      <div class="card-preview">
+        <iframe src="screens/asistencia.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Control de Asistencia</span>
+          <span class="tag tag-desktop">Desktop</span>
+        </div>
+        <p class="card-desc">Registro de check-in/check-out por QR, control de atrasos, horas extra y exportación de reportes por turno.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+    <a class="card" href="screens/calendarizacion-turnos.html" target="_blank">
+      <div class="card-preview">
+        <iframe src="screens/calendarizacion-turnos.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Calendarización de Turnos</span>
+          <span class="tag tag-desktop">Desktop</span>
+        </div>
+        <p class="card-desc">Asignación manual de turnos en calendario semanal. Detección de superposiciones y publicación por semana.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+    <a class="card" href="screens/auditoria-documental.html" target="_blank">
+      <div class="card-preview">
+        <iframe src="screens/auditoria-documental.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Auditoría Documental IA</span>
+          <span class="tag tag-desktop">Desktop</span>
+        </div>
+        <p class="card-desc">Análisis de brechas con IA por cliente (LAN Chile, Sky, JetSmart). Flujo borrador → aprobación → PDF → email.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+  </div>
+
+  <p class="section-title">Vistas móviles</p>
+  <div class="grid">
+
+    <a class="card" href="screens/checklist-turno.html" target="_blank">
+      <div class="card-preview mobile">
+        <iframe src="screens/checklist-turno.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Checklist de Turno</span>
+          <span class="tag tag-mobile">Mobile</span>
+        </div>
+        <p class="card-desc">Entrega de turno por checkboxes, campos de formulario, novedades en texto libre y firma digital. Sin fotos.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+    <a class="card" href="screens/portal-trabajador.html" target="_blank">
+      <div class="card-preview mobile">
+        <iframe src="screens/portal-trabajador.html" loading="lazy" scrolling="no"></iframe>
+      </div>
+      <div class="card-body">
+        <div class="card-header">
+          <span class="card-title">Portal del Trabajador</span>
+          <span class="tag tag-mobile">Mobile</span>
+        </div>
+        <p class="card-desc">Self-service móvil: mi turno, check-in/out, mis checklists, solicitud de cambio de turno y horario semanal.</p>
+        <span class="card-link">Ver pantalla completa</span>
+      </div>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  <strong>AeroOps</strong> · Plataforma Operacional · Aerosoluciones · Prototipo de interfaz — Junio 2026
+</footer>
+
+</body>
+</html>

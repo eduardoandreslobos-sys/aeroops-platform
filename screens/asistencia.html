@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroOps - Asistencia</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary": "#ffffff",
+                      "on-primary-container": "#828eb1",
+                      "inverse-primary": "#b9c6eb",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#cbdbf5",
+                      "primary-fixed": "#d9e2ff",
+                      "on-tertiary-fixed-variant": "#005320",
+                      "on-error-container": "#93000a",
+                      "tertiary-fixed-dim": "#62df7d",
+                      "on-surface": "#0b1c30",
+                      "surface-bright": "#f8f9ff",
+                      "surface-variant": "#d3e4fe",
+                      "on-primary-fixed-variant": "#3a4665",
+                      "secondary-container": "#316bf3",
+                      "primary-container": "#1a2744",
+                      "surface-container-high": "#dce9ff",
+                      "on-secondary-fixed-variant": "#003ea8",
+                      "secondary-fixed-dim": "#b4c5ff",
+                      "on-tertiary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "inverse-surface": "#213145",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#002109",
+                      "on-background": "#0b1c30",
+                      "primary-fixed-dim": "#b9c6eb",
+                      "secondary": "#0051d5",
+                      "surface-tint": "#515e7e",
+                      "primary": "#04122e",
+                      "error": "#ba1a1a",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#18a44b",
+                      "on-secondary-fixed": "#00174b",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "tertiary-container": "#002f0f",
+                      "on-primary-fixed": "#0d1b37",
+                      "background": "#f8f9ff",
+                      "on-surface-variant": "#45464d",
+                      "on-secondary-container": "#fefcff",
+                      "tertiary": "#001805",
+                      "surface-container-highest": "#d3e4fe",
+                      "outline": "#75777e",
+                      "tertiary-fixed": "#7ffc97",
+                      "outline-variant": "#c5c6ce",
+                      "surface": "#f8f9ff",
+                      "secondary-fixed": "#dbe1ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-md": "1rem",
+                      "unit": "4px",
+                      "container-gap": "1rem",
+                      "margin-page": "2rem",
+                      "stack-sm": "0.5rem",
+                      "gutter-md": "1.5rem"
+              },
+              "fontFamily": {
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "label-md": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "label-sm": [
+                              "Inter"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "headline-lg-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "letterSpacing": "0.01em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "display": [
+                              "36px",
+                              {
+                                      "lineHeight": "44px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "label-sm": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.03em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col h-screen overflow-y-auto bg-primary-container dark:bg-primary text-on-primary-container dark:text-on-primary font-body-md fixed h-full w-[280px] left-0 top-0 shadow-md">
+<!-- Brand / Header -->
+<div class="px-6 py-8 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface overflow-hidden flex-shrink-0">
+<img alt="Usuario Operativo" class="w-full h-full object-cover" data-alt="A detailed digital avatar of an operations manager with a headset, wearing a blue uniform, set against a clean, modern high-tech interface background in a light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZhnNlfOOyAA0wKVGPpCSO7Q2ZD3CdJvuQrqOnf6hCdkCh3kHDjf7_9Izeo44dV8XHDrUeDdqBILsIppexRDsC6Fh3BXjCjdHqApMZfdTOIbW-iX5V_wihzD0auvJ9mxRhXyUze3CfN8HlxA_Die0e1YYFHMDimAxOTRdwPMrWjSEUveAI6O8dm7thOB-WAVaLPYlNjVHXJolrbYIj5jsNrUsX9JXWe6Z28G3EfVrMMgKTARdRrYSv41Ej3eksRp2VKJP_xomcDR6K"/>
+</div>
+<div>
+<h1 class="text-headline-md font-headline-md font-bold text-on-secondary-container">AeroOps</h1>
+<p class="font-label-sm text-label-sm text-on-primary-container opacity-80">Operaciones Aéreas</p>
+</div>
+</div>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 px-3 py-4 flex flex-col gap-2">
+<!-- Panel de Control -->
+<a class="flex items-center gap-stack-md text-on-primary-container opacity-60 px-4 py-3 rounded-md hover:bg-primary-fixed-variant hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Panel de Control</span>
+</a>
+<!-- Operaciones -->
+<a class="flex items-center gap-stack-md text-on-primary-container opacity-60 px-4 py-3 rounded-md hover:bg-primary-fixed-variant hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined">flight_takeoff</span>
+<span class="font-label-md text-label-md">Operaciones</span>
+</a>
+<!-- Asistencia (ACTIVE STATE) -->
+<a class="flex items-center gap-stack-md bg-secondary-container text-on-secondary-container border-l-4 border-secondary-fixed px-4 py-3 rounded-r-md transition-all brightness-110" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">timer</span>
+<span class="font-label-md text-label-md font-bold">Asistencia</span>
+</a>
+<!-- Mantenimiento -->
+<a class="flex items-center gap-stack-md text-on-primary-container opacity-60 px-4 py-3 rounded-md hover:bg-primary-fixed-variant hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined">build</span>
+<span class="font-label-md text-label-md">Mantenimiento</span>
+</a>
+<!-- Tripulación -->
+<a class="flex items-center gap-stack-md text-on-primary-container opacity-60 px-4 py-3 rounded-md hover:bg-primary-fixed-variant hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Tripulación</span>
+</a>
+<!-- Configuración -->
+<a class="flex items-center gap-stack-md text-on-primary-container opacity-60 px-4 py-3 rounded-md hover:bg-primary-fixed-variant hover:opacity-100 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Configuración</span>
+</a>
+</div>
+<!-- CTA -->
+<div class="p-6 mt-auto">
+<button class="w-full bg-secondary text-on-secondary font-label-md text-label-md py-3 rounded-lg shadow-sm hover:brightness-110 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add</span>
+                Nuevo Turno
+            </button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 ml-[280px] w-[calc(100%-280px)] min-h-screen bg-background">
+<!-- TopAppBar (Customized for page context, merging some of the shared component structural logic but adapting content to the prompt) -->
+<header class="bg-surface border-b border-outline-variant flex justify-between items-center w-full px-gutter-md h-20 sticky top-0 z-10">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Asistencia — Lunes 30 Jun 2026</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-surface border border-outline-variant text-on-surface font-label-md text-label-md px-4 py-2 rounded-md hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">download</span>
+                    Exportar reporte
+                </button>
+<div class="w-10 h-10 rounded-full bg-surface-variant overflow-hidden border border-outline-variant ml-2">
+<img alt="Avatar del Administrador" class="w-full h-full object-cover" data-alt="A professional headshot of a corporate administrator in a sleek office environment, well-lit, representing high-stakes operations management in a modern light mode UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfsgBqHcS1rohMtgbYBxvu-VkMKV8y2K-gFbJmNeqOhpiCfHm07svfgbTaZnFBhI3XgVVKtBRdv_wYdcX9lMYPXKlmcwojxRnF-qLQpr2pIUOunJvlklDYndK8JXT8d2f7TWEH0sUwEvicJWyNiXKoL3q0Patt7TJkjwzke4Tv159yFM2Ft_hPOEpeqe1z2V7DN1b2rCDgyTIBtRrn_5PZ3kzhSfU6MsiLw63eYJfcY2DVlQ4l4eA2OrZ6uZgSs_uF5DcnMM9Kncq5"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-page max-w-[1600px] mx-auto flex flex-col gap-8">
+<!-- KPIs Row -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-container-gap">
+<!-- KPI 1 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-on-tertiary-container opacity-10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Presentes</span>
+<div class="flex items-center gap-1 text-on-tertiary-container bg-on-tertiary-container/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</div>
+</div>
+<div class="font-display text-display text-on-surface">24</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-error opacity-10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Ausentes</span>
+<div class="flex items-center gap-1 text-error bg-error/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">cancel</span>
+</div>
+</div>
+<div class="font-display text-display text-on-surface">4</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-[#ea580c] opacity-10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Con atraso</span>
+<div class="flex items-center gap-1 text-[#ea580c] bg-[#ea580c]/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+</div>
+</div>
+<div class="font-display text-display text-on-surface">2</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface border border-outline-variant rounded-lg p-5 shadow-sm flex flex-col gap-2 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-16 h-16 bg-secondary opacity-10 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant">Horas extra hoy</span>
+<div class="flex items-center gap-1 text-secondary bg-secondary/10 px-2 py-1 rounded-full">
+<span class="material-symbols-outlined text-[16px]">work_history</span>
+</div>
+</div>
+<div class="font-display text-display text-on-surface">6h</div>
+</div>
+</div>
+<!-- Main Layout (Two Columns) -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-start">
+<!-- Left Column: Data Table -->
+<div class="xl:col-span-8 2xl:col-span-9 bg-surface border border-outline-variant rounded-lg shadow-sm overflow-hidden flex flex-col">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-on-surface">Registro de Asistencia</h3>
+<div class="flex gap-2">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="pl-10 pr-4 py-2 border border-outline-variant rounded-md font-body-md text-body-md focus:border-secondary focus:ring-1 focus:ring-secondary outline-none transition-shadow bg-surface" placeholder="Buscar empleado..." type="text"/>
+</div>
+<button class="p-2 border border-outline-variant rounded-md hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Nombre</th>
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Turno</th>
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Check-in</th>
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Check-out</th>
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Estado</th>
+<th class="px-6 py-3 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Horas</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md">CM</div>
+<span class="font-medium">Carlos Méndez</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Mañana</td>
+<td class="px-6 py-4 font-mono">08:02</td>
+<td class="px-6 py-4 text-on-surface-variant">—</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#dcfce7] text-[#166534]">En turno</span>
+</td>
+<td class="px-6 py-4 text-right">4h</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-surface-bright/50">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-md text-label-md overflow-hidden">
+<img alt="AT" class="w-full h-full object-cover" data-alt="A professional headshot of a female operations worker in a bright, clean industrial setting, representing a modern enterprise light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCb5DH-lB0tk7jYxjSvC1WXDyzy9GKlMejVn_GvQgYuKg5fMRt3_JeY8sjDgCrbWhVB-1B3vdNslnObmswU3SW0zxIlkYmkcy-JmGlbFqHcVk1TAvx0NbTIVV6lPqwyL_roM5v2XjlYiMKYEnkSU0mleCBpqs_EpP0xVqSCwHA7zOkFGGxAX4_C5LtJOCNNiBLoPGTtqIwiAUUqMXZ-y3fGgswnX42KxSq7Dpg8T_VoCIA_67bj8ahaomK1D_b89AxdRNs69b3GThiv"/>
+</div>
+<span class="font-medium">Ana Torres</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Mañana</td>
+<td class="px-6 py-4 font-mono">07:58</td>
+<td class="px-6 py-4 text-on-surface-variant">—</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#dcfce7] text-[#166534]">En turno</span>
+</td>
+<td class="px-6 py-4 text-right">4h</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md">RS</div>
+<span class="font-medium">Roberto Silva</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Tarde</td>
+<td class="px-6 py-4 font-mono text-[#ea580c]">14:05</td>
+<td class="px-6 py-4 text-on-surface-variant">—</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-[#ffedd5] text-[#9a3412]">Atraso</span>
+</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">—</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-surface-bright/50">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md">MG</div>
+<span class="font-medium">María González</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Tarde</td>
+<td class="px-6 py-4 text-on-surface-variant">—</td>
+<td class="px-6 py-4 text-on-surface-variant">—</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-error-container text-on-error-container">Ausente</span>
+</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">—</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-md text-label-md overflow-hidden">
+<img alt="FR" class="w-full h-full object-cover" data-alt="A professional headshot of a male operations worker in a bright, clean industrial setting, representing a modern enterprise light mode aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpfcqjF3DWi7gyJkrUjjRLwv9lIXJt3FhXrXa3CIW_ZX8AnOQS6Ft384nFp1KcV6F1FtO1v-Dp2RAGSr_BqhOs5r_spQKabsrD3bTRxaIP5QpoeDcTh4ZKj3vebcLLwnIkCdzrR8bSJYeMVFI2SqxCi_8Jm_8EYpk8uB6MIkWEP00DDcIxeC7ytIfAcSF5MVL5kYzeTV3pUmTpS0etdfdhtwVX4Rq0_s7YcxRrXLJ92zwnYUQN4oU2kiJiejUHyw9d58y367PRKblT"/>
+</div>
+<span class="font-medium text-on-surface-variant">Felipe Rojas</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Mañana</td>
+<td class="px-6 py-4 font-mono text-on-surface-variant">07:55</td>
+<td class="px-6 py-4 font-mono text-on-surface-variant">13:58</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-variant text-on-surface-variant">Completado</span>
+</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">6h</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors group bg-surface-bright/50">
+<td class="px-6 py-4 flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md">CM</div>
+<span class="font-medium text-on-surface-variant">Claudia Muñoz</span>
+</td>
+<td class="px-6 py-4 text-on-surface-variant">Mañana</td>
+<td class="px-6 py-4 font-mono text-on-surface-variant">07:50</td>
+<td class="px-6 py-4 font-mono text-on-surface-variant">14:00</td>
+<td class="px-6 py-4">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label-sm text-label-sm bg-surface-variant text-on-surface-variant">Completado</span>
+</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">6h 10m</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Right Column: Panel Lateral -->
+<div class="xl:col-span-4 2xl:col-span-3 bg-surface border border-outline-variant rounded-lg shadow-sm flex flex-col h-full">
+<div class="px-6 py-5 border-b border-outline-variant flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined">more_time</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">Resumen de horas extra</h3>
+</div>
+<div class="p-6 flex-1 flex flex-col gap-4">
+<p class="font-body-md text-body-md text-on-surface-variant mb-2">Acumulado semanal para el personal con turnos extendidos.</p>
+<!-- List Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-md bg-surface-container-low border border-surface-container-highest">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface flex items-center justify-center font-label-md text-label-md overflow-hidden">
+<img alt="FR" class="w-full h-full object-cover" data-alt="A small generic user avatar thumbnail representing Felipe Rojas in a clean modern interface style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-xLzbC2NUZK7lYuV1COccDeI8uY6kgWku7DsEzZkN8RV6L05RHaJXokc2kjF4nNVvv_v1qS51xi_Ub78eAVrbK5R8suo62ZaUx6DnuLFqP37NLmtJoz0F7kn1F6D86cOeG4qwiBcKlGwKhtFyTxaTJ6Do8YJAG1stqHM5FgySopPqfwb11ka5IDzPcP-7m-pFl3dGcrSCeHCVvItiCv-hTDgRfxOi3blQWIoTcZ8Qxaw09iwMPTO4K77mPRf-nlGqoRzgfycvhu0r"/>
+</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Felipe Rojas</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Mañana</div>
+</div>
+</div>
+<div class="font-label-md text-label-md text-secondary font-bold bg-secondary/10 px-2 py-1 rounded">
+                                +2h
+                            </div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-md bg-surface-container-low border border-surface-container-highest">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label-md text-label-md">CM</div>
+<div>
+<div class="font-label-md text-label-md text-on-surface">Claudia Muñoz</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant">Mañana</div>
+</div>
+</div>
+<div class="font-label-md text-label-md text-secondary font-bold bg-secondary/10 px-2 py-1 rounded">
+                                +1.5h
+                            </div>
+</div>
+<div class="mt-auto pt-6">
+<button class="w-full border border-outline-variant text-on-surface font-label-md text-label-md py-2.5 rounded-md hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+                                Ver detalle
+                                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

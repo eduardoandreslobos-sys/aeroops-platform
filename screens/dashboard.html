@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AeroOps - Dashboard Principal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-surface": "#0b1c30",
+                        "tertiary": "#001805",
+                        "on-surface-variant": "#45464d",
+                        "inverse-primary": "#b9c6eb",
+                        "background": "#f8f9ff",
+                        "primary-container": "#1a2744",
+                        "tertiary-fixed-dim": "#62df7d",
+                        "on-secondary-container": "#fefcff",
+                        "surface-variant": "#d3e4fe",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed": "#7ffc97",
+                        "on-primary-fixed-variant": "#3a4665",
+                        "on-secondary-fixed": "#00174b",
+                        "primary-fixed-dim": "#b9c6eb",
+                        "outline-variant": "#c5c6ce",
+                        "primary-fixed": "#d9e2ff",
+                        "outline": "#75777e",
+                        "surface-tint": "#515e7e",
+                        "secondary-container": "#316bf3",
+                        "on-background": "#0b1c30",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#002109",
+                        "tertiary-container": "#002f0f",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#005320",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#cbdbf5",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "primary": "#04122e",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-container": "#18a44b",
+                        "on-primary-container": "#828eb1",
+                        "surface-container-highest": "#d3e4fe",
+                        "surface": "#f8f9ff",
+                        "secondary": "#0051d5",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-surface": "#213145",
+                        "on-primary-fixed": "#0d1b37",
+                        "surface-container": "#e5eeff",
+                        "secondary-fixed": "#dbe1ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "0.5rem",
+                        "stack-md": "1rem",
+                        "margin-page": "2rem",
+                        "gutter-md": "1.5rem",
+                        "unit": "4px",
+                        "container-gap": "1rem"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "display": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600" }],
+                        "label-md": ["13px", { "lineHeight": "18px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "display": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-[280px] bg-primary dark:bg-primary-container flex flex-col py-margin-page shadow-md z-20">
+<!-- Header -->
+<div class="px-gutter-md mb-8">
+<h2 class="font-headline-md text-headline-md font-bold text-on-primary">AeroOps</h2>
+<p class="font-label-sm text-label-sm text-on-primary/60 mt-1 uppercase tracking-wider">Enterprise Control</p>
+</div>
+<!-- Navigation -->
+<nav class="flex flex-col flex-1">
+<!-- Active Tab -->
+<a class="flex items-center gap-stack-md px-4 py-3 bg-secondary-container text-on-secondary-container border-l-4 border-secondary" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">flight</span>
+<span class="font-body-md text-body-md">Fleet status</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-body-md text-body-md">Flight Ops</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">engineering</span>
+<span class="font-body-md text-body-md">Maintenance</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md text-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</a>
+</nav>
+<!-- CTA -->
+<div class="px-4 my-6">
+<button class="w-full py-2 px-4 bg-secondary text-on-secondary font-label-md text-label-md rounded flex items-center justify-center gap-2 hover:bg-secondary/90 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                New Operation
+            </button>
+</div>
+<!-- Footer Navigation -->
+<div class="flex flex-col border-t border-on-primary/10 pt-4 mt-auto">
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-body-md text-body-md">Support</span>
+</a>
+<a class="flex items-center gap-stack-md px-4 py-3 text-on-primary/60 hover:text-on-primary hover:bg-primary-container/50 transition-colors active:scale-95 duration-150" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-body-md text-body-md">Log out</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-[280px] flex-1 flex flex-col h-screen overflow-y-auto w-[calc(100%-280px)]">
+<!-- Top App Bar / Header -->
+<header class="h-16 px-gutter-md bg-surface border-b border-outline-variant flex items-center justify-between sticky top-0 z-10">
+<div>
+<h1 class="font-headline-md text-headline-md font-extrabold text-on-surface">Bienvenido, Eduardo</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Lunes 30 Jun 2026</p>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container-lowest border border-outline-variant rounded text-on-surface font-label-md text-label-md hover:bg-surface-variant hover:text-secondary transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+                    Ver alertas
+                </button>
+<div class="w-px h-8 bg-outline-variant mx-2"></div>
+<img alt="Manager Profile" class="w-10 h-10 rounded-full border border-outline-variant object-cover shadow-sm" data-alt="A professional headshot of a corporate aviation operations manager, mid-30s, wearing a crisp dark blue suit and white shirt, looking confident against a clean, well-lit modern office background. High quality, sharp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqiZnliJYW6PSoInpoSNEJZdpKpiDvHRkV70_llDaaOSiHNvjQqhjehG_c0xIKG-lPh592mD7iqptDMgekbU4ewJtLyClr9U47eXkX1TqzdhwPugmO1SFsZPmhGUnX131apZaMkEIuvDy7ojPAieFZr8JqU9A0NYSgJuSlbJu6IL_5KSjEbbK2XZt8g-TnRfow0GNPAC91vF0RJzM0ns7ZGcNaZzl0fzTuhF8E850hg3TCH6AjHVkVMhFSzaLoiJvs6JLF65OmsjbM"/>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-margin-page flex flex-col gap-margin-page max-w-7xl mx-auto w-full">
+<!-- KPI Cards Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-container-gap">
+<!-- KPI 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-secondary transition-colors cursor-default">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wide">Asistencia hoy</h3>
+<span class="material-symbols-outlined text-outline">group</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-display text-display text-on-surface">24<span class="text-on-surface-variant text-headline-md font-headline-md">/28</span></span>
+<span class="px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 86%
+                        </span>
+</div>
+</div>
+<!-- KPI 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-secondary transition-colors cursor-default">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wide">Turnos activos</h3>
+<span class="material-symbols-outlined text-outline">schedule</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-display text-display text-on-surface">3</span>
+<span class="px-2 py-1 rounded bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm flex items-center gap-1">
+                            En curso
+                        </span>
+</div>
+</div>
+<!-- KPI 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-secondary transition-colors cursor-default">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wide">Auditorías pdtes.</h3>
+<span class="material-symbols-outlined text-outline">assignment_late</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-display text-display text-on-surface">5</span>
+<!-- Using error-container for a warning/attention state in this enterprise palette -->
+<span class="px-2 py-1 rounded bg-error-container text-on-error-container font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Requieren atención
+                        </span>
+</div>
+</div>
+<!-- KPI 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-5 shadow-[0_4px_12px_rgba(0,0,0,0.02)] flex flex-col justify-between hover:border-secondary transition-colors cursor-default">
+<div class="flex justify-between items-start mb-4">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wide">Checklists comp.</h3>
+<span class="material-symbols-outlined text-outline">fact_check</span>
+</div>
+<div class="flex items-end justify-between">
+<span class="font-display text-display text-on-surface">12</span>
+<span class="px-2 py-1 rounded bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm flex items-center gap-1">
+                            Hoy
+                        </span>
+</div>
+</div>
+</section>
+<!-- Charts Row -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-container-gap">
+<!-- Bar Chart Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Asistencia últimos 7 días</h3>
+<button class="text-on-surface-variant hover:text-secondary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<!-- CSS Simulated Bar Chart -->
+<div class="h-48 flex items-end justify-between gap-2 mt-4 px-2">
+<div class="w-full bg-primary-container/20 rounded-t h-[60%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm px-2 py-1 rounded">Mar: 18</div>
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300"></div>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[75%] relative group">
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1 hidden group-hover:block bg-inverse-surface text-inverse-on-surface font-label-sm text-label-sm px-2 py-1 rounded">Mié: 22</div>
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300"></div>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[85%] relative group">
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300"></div>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[90%] relative group">
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300"></div>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[100%] relative group">
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300"></div>
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[40%] relative group">
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300 opacity-50"></div> <!-- weekend -->
+</div>
+<div class="w-full bg-primary-container/20 rounded-t h-[30%] relative group">
+<div class="w-full bg-primary-container rounded-t h-full transition-all duration-300 opacity-50"></div> <!-- weekend -->
+</div>
+</div>
+<div class="flex justify-between mt-2 font-label-sm text-label-sm text-on-surface-variant px-2 border-t border-outline-variant pt-2">
+<span>M</span><span>M</span><span>J</span><span>V</span><span>S</span><span>D</span><span>L</span>
+</div>
+</div>
+<!-- Donut Chart Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-lg p-6 shadow-[0_4px_12px_rgba(0,0,0,0.02)]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline-md text-headline-md text-on-surface">Estado de auditorías por cliente</h3>
+<button class="text-on-surface-variant hover:text-secondary"><span class="material-symbols-outlined">more_horiz</span></button>
+</div>
+<div class="flex items-center justify-center gap-8 h-48 mt-4">
+<!-- CSS Simulated Donut Chart using conic-gradient -->
+<div class="w-32 h-32 rounded-full relative" style="background: conic-gradient(
+                            #1a2744 0% 50%,     /* LAN Chile 3/6 */
+                            #316bf3 50% 83.3%,  /* JetSmart 2/6 */
+                            #cbdbf5 83.3% 100%  /* Sky Airline 1/6 */
+                        );">
+<div class="absolute inset-0 m-auto w-20 h-20 bg-surface-container-lowest rounded-full flex items-center justify-center">
+<span class="font-headline-md text-headline-md text-on-surface">6</span>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex flex-col gap-3 font-body-md text-body-md text-on-surface">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-primary-container"></span>
+<span>LAN Chile (3)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-secondary-container"></span>
+<span>JetSmart (2)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-surface-dim"></span>
+<span>Sky Airline (1)</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Activity Table -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-lg shadow-[0_4px_12px_rgba(0,0,0,0.02)] overflow-hidden">
+<div class="px-6 py-4 border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<h3 class="font-headline-md text-headline-md text-on-surface">Actividad reciente</h3>
+<button class="text-secondary font-label-md text-label-md hover:underline">Ver todo</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="px-6 py-3 font-semibold">Estado</th>
+<th class="px-6 py-3 font-semibold">Usuario / Entidad</th>
+<th class="px-6 py-3 font-semibold">Acción</th>
+<th class="px-6 py-3 font-semibold">Contexto</th>
+<th class="px-6 py-3 font-semibold text-right">Hora</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface divide-y divide-outline-variant/50">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+<td class="px-6 py-4 font-medium">Carlos Méndez</td>
+<td class="px-6 py-4">Check-in</td>
+<td class="px-6 py-4 text-on-surface-variant">Turno Mañana</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">08:02</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-tertiary-fixed-dim" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</td>
+<td class="px-6 py-4 font-medium">Ana Torres</td>
+<td class="px-6 py-4">Checklist entregado</td>
+<td class="px-6 py-4 text-on-surface-variant">Turno Mañana</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">07:58</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">info</span>
+</td>
+<td class="px-6 py-4 font-medium">Manual LAN Chile</td>
+<td class="px-6 py-4">Auditoría</td>
+<td class="px-6 py-4 text-on-surface-variant">
+<span class="px-2 py-1 bg-surface-variant text-on-surface-variant rounded text-xs">En revisión</span>
+</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">hace 2h</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-6 py-4">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</td>
+<td class="px-6 py-4 font-medium">Roberto Silva</td>
+<td class="px-6 py-4">Check-in tarde</td>
+<td class="px-6 py-4 text-on-surface-variant">Turno Tarde</td>
+<td class="px-6 py-4 text-right text-on-surface-variant">14:05</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+</body></html>
